@@ -567,7 +567,6 @@ class SliverReorderableGridState extends State<SliverReorderableGrid>
   }
 
   void _dragCancel(_DragInfo item) {
-    widget.onReorderCancel?.call();
     _dragReset();
   }
 
@@ -580,6 +579,8 @@ class SliverReorderableGridState extends State<SliverReorderableGrid>
     final int toIndex = _insertIndex!;
     if (fromIndex != toIndex) {
       widget.onReorder.call(fromIndex, toIndex);
+    } else {
+      widget.onReorderCancel?.call();
     }
     _dragReset();
   }
